@@ -1,7 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Provided data
 data = {
     'Year': [2014]*12 + [2015]*12 + [2016]*12 + [2017]*12 + [2018]*12 + [2019]*12 + [2020]*12 + [2021]*12 + [2022]*12 + [2023]*12 + [2024]*12,
     'Price': [
@@ -18,3 +17,16 @@ data = {
         2.033, 2.006, 1.997, 1.998, 1.971, 1.973, 1.975, 1.951, 1.976, 1.937, 1.916, 1.912
     ]
 }
+
+df = pd.DataFrame(data)
+
+average_prices = df.groupby('Year')['Price'].mean()
+
+
+plt.figure(figsize=(10, 5))
+plt.plot(average_prices.index, average_prices.values, marker='o')
+plt.title('Average Price for Each Year')
+plt.xlabel('Year')
+plt.ylabel('Average Price')
+plt.grid(True)
+plt.show()
